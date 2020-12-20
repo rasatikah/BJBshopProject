@@ -74,9 +74,9 @@ if (isset($_POST['reg_deliver'])) {
   <link rel="stylesheet" type="text/css" href="style.css">
   
   <style>
-        body{
-          background: url(img/bg.jpg) no-repeat center center fixed; 
+       body{
           background-size: cover;
+          background-image: url('img/johorflag.jpg');
         }
 </style>
   
@@ -85,7 +85,8 @@ if (isset($_POST['reg_deliver'])) {
 <body>
   
   <center>
-    <h1>Daftar Akaun</h1>
+    <br><br>
+    <h1>Daftar Akaun | Penghantar</h1>
     <br>
     <form method="post" action="deliverregister.php">
 

@@ -75,8 +75,8 @@ if (isset($_POST['reg_user'])) {
   
   <style>
         body{
-          background: url(img/bg.jpg) no-repeat center center fixed; 
           background-size: cover;
+          background-image: url('img/johorflag.jpg');
         }
 </style>
   
@@ -85,7 +85,8 @@ if (isset($_POST['reg_user'])) {
 <body>
   
   <center>
-    <h1>Daftar Akaun</h1>
+    <br><br>
+    <h1>Daftar Akaun | Pengguna</h1>
     <br>
     <form method="post" action="register.php">
 
