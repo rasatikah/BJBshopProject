@@ -716,6 +716,12 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 form.cart {
     margin-bottom: 25px;
 }
+.btn_login {
+    background: none repeat scroll 0 0 #027e27;
+    border: medium none;
+    color: #fff;
+    padding: 6px 25px;display: inline-block
+}
 .login-op-button {
     background-color: rgb(138, 8, 8);
   border: none;

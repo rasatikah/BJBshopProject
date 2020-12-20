@@ -27,7 +27,7 @@ if (isset($_POST['login_delivery'])) {
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['username'] = $username;
           $_SESSION['success'] = "You are now logged in";
-          header('location: deliveryhomepage.php');
+          header('location: deliverhomepage.php');
         }else {
             array_push($errors, "Wrong username/password combination");
         }
@@ -64,7 +64,21 @@ if (isset($_POST['login_delivery'])) {
 		.column {
 		float: left;
 		padding: 36px;
-		}
+        }
+        .login-op-button {
+            background-color: rgb(138, 8, 8);
+            border: none;
+            color:white;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 16px;
+            }
+        .login-op-button:hover {
+            background-color:#000
+        }
 	</style>
     
 
@@ -100,7 +114,7 @@ if (isset($_POST['login_delivery'])) {
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.php"><span>BJBshop | Log Masuk Penghantar</span></a></h1>
+                        <h1><a href="index.php"><span>BJBshop | Log Masuk</span></a></h1>
                     </div>
                 </div>
                 
@@ -118,7 +132,7 @@ if (isset($_POST['login_delivery'])) {
     
     <center>
 
-        <h1>Log Masuk | Penghantar</h1>
+        <h1>Penghantar</h1>
         <br><br><br>
 
         <form method="post" action="login_d.php">
@@ -139,11 +153,12 @@ if (isset($_POST['login_delivery'])) {
         </form>
         <br>
         <h4>
-        Tiada akaun? Sila klik di <button class="add_to_cart_button" onclick="location.href = 'register.php';">Sini</button> untuk mendaftar
+            
+            <button class="login-op-button" onclick="location.href = 'login.php';">Akaun Pengguna</button>
+            <button class="login-op-button" onclick="location.href = 'login_s.php';">Akaun Peniaga</button>
+            <button class="login-op-button" onclick="location.href = 'login_a.php';">Akaun Admin</button>
             <br><br><br>
-            <button class="add_to_cart_button" onclick="location.href = 'login.php';">Akaun Pengguna</button>
-            <button class="add_to_cart_button" onclick="location.href = 'login_s.php';">Akaun Peniaga</button>
-            <button class="add_to_cart_button" onclick="location.href = 'login_a.php';">Akaun Admin</button>
+            Tiada akaun? Sila klik di <button class="add_to_cart_button" onclick="location.href = 'register.php';">Sini</button> untuk mendaftar
         </h4>
 
     </center>

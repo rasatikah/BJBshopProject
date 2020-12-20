@@ -64,7 +64,21 @@ if (isset($_POST['login_user'])) {
 		.column {
 		float: left;
 		padding: 36px;
-		}
+        }
+        .login-op-button {
+            background-color: rgb(138, 8, 8);
+            border: none;
+            color:white;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 16px;
+            }
+        .login-op-button:hover {
+            background-color:#000
+        }
 	</style>
     
 
@@ -117,7 +131,7 @@ if (isset($_POST['login_user'])) {
                         <br><br><br>
     <center>
 
-        <h1>Log Masuk</h1>
+        <h1>Pengguna</h1>
 
         <br><br><br>
 
@@ -139,11 +153,12 @@ if (isset($_POST['login_user'])) {
         </form>
         <br>
         <h4>
-            Tiada akaun? Sila klik di <button class="add_to_cart_button" onclick="location.href = 'register.php';">Sini</button> untuk mendaftar
+            <button class="login-op-button" onclick="location.href = 'login_s.php';">Akaun Peniaga</button>
+            <button class="login-op-button" onclick="location.href = 'login_d.php';">Akaun Penghantar</button>
+            <button class="login-op-button" onclick="location.href = 'login_a.php';">Akaun Admin</button>
             <br><br><br>
-            <button class="add_to_cart_button" onclick="location.href = 'login_s.php';">Akaun Peniaga</button>
-            <button class="add_to_cart_button" onclick="location.href = 'login_d.php';">Akaun Penghantar</button>
-            <button class="add_to_cart_button" onclick="location.href = 'login_a.php';">Akaun Admin</button>
+            Tiada akaun? Sila klik di <button class="add_to_cart_button" onclick="location.href = 'register.php';">Sini</button> untuk mendaftar
+
         </h4>
     
     </center>
