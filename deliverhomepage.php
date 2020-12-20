@@ -98,13 +98,12 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a id="homePage" href="sellerhomepage.php">Laman Utama</a></li>
-                        <li><a href="deliveryhomepage.php">Halaman Kedai</a></li>
+                        <li class="active"><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
+                        <li><a href="penghantaran.php">Penghantaran</a></li>
                         <div class="dropdownnew">
                             <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
-                                <a id="myAcct" href="seller.php">Akaun saya</a>
-                                <a id="myReport" href="sellerreport.php">Laporan</a>
+                                <a id="myAcct" href="deliver.php">Akaun saya</a>
                                 <a id="logout" href="logout.php">Log Keluar</a>
                                 </div>
                      </div> 
@@ -119,64 +118,96 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Selamat Datang ke BJBshop</h2>
+                        <h2>Selamat Datang BJBshop</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End mainmenu area -->
     
-    <div class="maincontent-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <center>
-                    <br><br>
-                        <div class="content">
-                            <!-- notification message -->
-                            <?php if (isset($_SESSION['success'])) : ?>
-                            <div class="error success" >
-                                <h3>
-                                    <?php 
-                                        echo $_SESSION['success']; 
-                                        unset($_SESSION['success']);
-                                    ?>
-                                </h3>
-                            </div>
-                            <?php endif ?>
-
-                            <!-- logged in user information -->
-                            <?php  if (isset($_SESSION['username'])) : ?>
-                                <h1>Selamat Datang,  <strong><?php echo $_SESSION['username']; ?></strong></h1>
-                            <?php endif ?>
-                                <h3>
-                                    <body onload="startTime()">
-                                    Masa Adalah <div id="txt"></div>
-                                </h3>
+    <div class="slider-area">
+        <div class="zigzag-bottom"></div>
+        <div id="slide-list" class="carousel carousel-fade slide" data-ride="carousel">
+            
+            <div class="slide-bulletz">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ol class="carousel-indicators slide-indicators">
+                                <li data-target="#slide-list" data-slide-to="0" class="active"></li>
+                                <li data-target="#slide-list" data-slide-to="1"></li>
+                                <li data-target="#slide-list" data-slide-to="2"></li>
+                            </ol>                            
                         </div>
-                    </center>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div> <!-- End main content area -->
 
-    <script>
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('txt').innerHTML =
-            h + ":" + m + ":" + s;
-            var t = setTimeout(startTime, 500);
-        }
-        function checkTime(i) {
-            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-            return i;
-        }
-    </script>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="single-slide">
+                        <div class="slide-bg slide-one"></div>
+                        <div class="slide-text-wrapper">
+                            <div class="slide-text">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-6">
+                                            <div class="slide-content">
+                                                <h2>kita adalah terbaik</h2>
+                                                <p>Program Bangsa Johor Bahagia ini adalah sebuah projek komuniti di bawah naungan Yayasan Sultan Ibrahim Johor dan Yayasan Raja Zarith Sofiah Negeri Johor.  Komunitinya adalah di Rumah Pangsa Bandar Baru Kangkar Pulai.</p>
+                                                <a href="" class="readmore">Ketahui Lebih Lanjut</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="single-slide">
+                        <div class="slide-bg slide-two"></div>
+                        <div class="slide-text-wrapper">
+                            <div class="slide-text">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-6">
+                                            <div class="slide-content">
+                                                <h2>Kita Hebat</h2>
+                                                <p>Program Bangsa Johor Bahagia telah dilancarkan oleh Duli Yang Maha Mulia Raja Zarith Sofiah binti Almarhum Sultan Idris Shah, Permaisuri Johor pada 17 Mac 2019 bersamaan 10 Rajab 1440 Hijrah bertempat di Dewan Sultan Iskandar, UTM Johor Bahru.</p>
+                                                <a href="" class="readmore">Ketahui Lebih Lanjut</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="single-slide">
+                        <div class="slide-bg slide-three"></div>
+                        <div class="slide-text-wrapper">
+                            <div class="slide-text">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-6">
+                                            <div class="slide-content">
+                                                <h2>Kami Terhebat</h2>
+                                                <p>Pusat Teknologi  Maklumat dan Komunikasi (CICT) telah mengadakan dua kali Program Bangsa Johor Bahagia iaitu pada 6 Oktober 2018 dan 9 Mac 2019.  CICT telah menganjurkan program yang berbentuk IT seperti mengadakan Bengkel Penggunaan Media Sosial (Pengenalan Facebook, Instagram, Laman Web) dan aktiviti-aktiviti yang berpotensi ke arah penjanaan ekonomi secara ‘online’.  Program ini telah diadakan di Rumah Pangsa Bandar Baru Kangkar Pulai dan CICT.</p>
+                                                <a href="" class="readmore">Ketahui Lebih Lanjut</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>        
+    </div> <!-- End slider area -->
     
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
