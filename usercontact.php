@@ -163,8 +163,6 @@ if (isset($_POST['contact'])) {
                         <ul class="nav navbar-nav">
                             <li ><a id="homePage" href="userindex.php">Laman Utama</a></li>
                             <li ><a href="usershop.php">Halaman Kedai</a></li>
-                            <li ><a href="usercart.php">Troli</a></li>
-                            <li ><a href="usercheckout.php">Pembayaran</a></li>
                             <li class="active"><a href="usercontact.php">Hubungi Kami</a></li>
                             <div class="dropdownnew">
                             <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>

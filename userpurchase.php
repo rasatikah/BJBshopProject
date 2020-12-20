@@ -26,7 +26,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>eLet'sShop - HTML eCommerce Template</title>
+    <title>BJBshop</title>
     
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="userIndex.php">e<span>Let'sShop</span></a></h1>
+                    <h1><a href="index.php"><span>BJBshop | Laman Pengguna</span></a></h1>
                     </div>
                 </div>
                 
@@ -128,8 +128,6 @@
                         <ul class="nav navbar-nav">
                             <li ><a id="homePage" href="userindex.php">Laman Utama</a></li>
                             <li ><a href="usershop.php">Halaman Kedai</a></li>
-                            <li ><a href="usercart.php">Troli</a></li>
-                            <li ><a href="usercheckout.php">Pembayaran</a></li>
                             <li ><a href="usercontact.php">Hubungi Kami</a></li>
                             
                             <div class="dropdownnew">

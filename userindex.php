@@ -123,8 +123,6 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a id="homePage" href="userindex.php">Laman Utama</a></li>
                             <li ><a href="usershop.php">Halaman Kedai</a></li>
-                            <li ><a href="usercart.php">Troli</a></li>
-                            <li ><a href="usercheckout.php">Pembayaran</a></li>
                             <li ><a href="usercontact.php">Hubungi Kami</a></li>
                             
                             
