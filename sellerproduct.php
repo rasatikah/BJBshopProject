@@ -174,7 +174,7 @@
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
-<!---------------------------------------------------------------------->
+<!------------------------------------------------------------------------>
 
 <h2 class="sidebar-title">Tambah produk</h2>
 
