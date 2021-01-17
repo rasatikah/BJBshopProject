@@ -39,7 +39,7 @@ if (isset($_POST['reg_deliver'])) {
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
-  $deliver_check_query = "SELECT * FROM deliver WHERE username='$username' OR email='$deliverEmail' LIMIT 1";
+  $deliver_check_query = "SELECT * FROM delivery WHERE username='$username' OR email='$deliverEmail' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $deliver = mysqli_fetch_assoc($result);
   
@@ -57,12 +57,12 @@ if (isset($_POST['reg_deliver'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO deliver (username, deliverEmail, password, phoneNumber, deliverAddress, deliverName) 
+  	$query = "INSERT INTO delivery (username, deliverEmail, password, phoneNumber, deliverAddress, deliverName) 
   			  VALUES('$username', '$deliverEmail', '$password', '$phoneNumber', '$deliverAddress', '$deliverName')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
-  	header('location: login.php');
+  	header('location: login_d.php');
   }
 }
 ?>

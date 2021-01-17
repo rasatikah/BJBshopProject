@@ -18,6 +18,16 @@
     }
 ?>
 
+<?php 
+
+include("function.php");
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -121,6 +131,45 @@
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
                         <h2>Penghantaran Diterima</h2>
+
+                        <table>
+              <tr>
+                <th>paymentID</th>
+                <th>custName</th>
+                <th>custAddress</th>
+                <th>productName</th>
+                <th>productQuantity</th>
+                <th>price</th>
+                <th>proofPayment</th>
+                <th>paymentTime</th>
+                <th>orderStatus</th>
+                <th>orderTracking</th>
+              </tr>
+              <?php
+              $conn = mysqli_connect("localhost", "root", "", "projectwd");
+              if ($conn-> connect_error) {
+                  die("Connection failed:". $conn-> connect_error);
+              }
+
+              $sql = "SELECT paymentID, custName, custAddress, productName, productQuantity, price, proofPayment, paymentTime, orderStatus, orderTracking from paymenting where paymentID='$paymentID'";
+           
+              $result = $conn-> query($sql);
+
+              if($result -> num_rows > 0){
+                  while ($row = $result-> fetch_assoc()){
+                      echo "<tr><td>". $row["paymentID"] ."</td><td>". $row["custName"] ."</td><td>". $row["custAddress"] ."</td><td>". $row["productName"]
+                      ."</td><td>". $row["productQuantity"] ."</td><td>". $row["price"]. "</td><td>". $row["proofPayment"] ."</td><td>". $row["paymentTime"]
+                      ."</td><td>". $row["orderStatus"] ."</td><td>". $row["orderTracking"] ."</td></tr>";
+                  }
+                  echo "</table>";
+              }
+              else {
+                  echo "0 result";
+              }
+
+              $conn-> close();
+              ?>
+              </table>
                     </div>
                 </div>
             </div>

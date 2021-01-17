@@ -1,22 +1,4 @@
-<?php 
 
-    //Starts Session
-    session_start(); 
-    ob_start();
-
-    //If not logged in as user
-    if (!isset($_SESSION['username'])) {
-        $_SESSION['msg'] = "You must log in first";
-        header('location: login_s.php');
-    }
-
-    //Logout
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['username']);
-        header("location: login.php");
-    }
-?>
 
 <?php 
 
@@ -63,11 +45,37 @@ performQuery($query);
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
-    
+        <style>
+             .login-op-button {
+            background-color: #2b027e;
+            border: none;
+            color:white;
+            padding: 3% 25%;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 16px;
+            }
+        .login-op-button:hover {
+            background-color:#000
+        }
+
+        table{
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+        }
+
+        th{
+            text-align: center;
+        }
+        </style>
 
   </head>
-  <body>
-   
+ 
+  
+      
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -115,6 +123,8 @@ performQuery($query);
                     <ul class="nav navbar-nav">
                         <li ><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
                         <li class="active"><a href="deliverdelivery.php">Penghantaran</a></li>
+                        <li class="nav-item dropdown">
+                             <a class="nav-link" href="notification.php" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notifications </a></li>
                         <div class="dropdownnew">
                             <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
@@ -133,9 +143,8 @@ performQuery($query);
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Penghantaran Dibatalkan</h2>
-
-                        <table>
+                      
+              <table>
               <tr>
                 <th>paymentID</th>
                 <th>custName</th>
@@ -173,15 +182,20 @@ performQuery($query);
               $conn-> close();
               ?>
               </table>
+
+              <form action="deliversuccess.php" method="post">
+                    <input type="submit" value= "Terima" name="name"><br></form>
+              <form action="delivercancel.php" method="post">
+                    <input type="submit" value= "Tolak" name="name"><br></form>
+
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End mainmenu area -->
-
-<!-------------------------------------------------------------------------------------->
  
-<!-------------------------------------------------------------------------------------->
+       
+    
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

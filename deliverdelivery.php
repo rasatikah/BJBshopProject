@@ -1,5 +1,11 @@
 <?php 
 
+include("function.php");
+    
+?>
+
+<?php 
+
     //Starts Session
     session_start(); 
     ob_start();
@@ -114,9 +120,39 @@
                     </button>
                 </div> 
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                   <ul class="nav navbar-nav">
                         <li ><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
                         <li class="active"><a href="deliverdelivery.php">Penghantaran</a></li>
+                        
+                        <li class="nav-item dropdown"><a class="btn btn-primary dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" 
+                                                        aria-expanded="false">Notifications
+                                                        <?php
+                                                               $query = "SELECT * from `paymenting` order by `paymentTime` DESC";
+                                                               if(count(fetchAll($query))>0){
+                                                         ?>
+                                                              <span class="badge badge-light"><?php echo count(fetchAll($query)); ?></span>
+                                                              
+                                                                         <?php
+                                                          }
+                                                                       ?></a>
+                                                        
+                                                        <div class="dropdown-menu dropdown-large" aria-labelledby="dropdown01">
+                                                            <?php
+                                                              if(count(fetchAll($query))>0){
+                                                                  foreach(fetchAll($query) as $i){
+                                                            ?>
+                                                        <a class="dropdown-item " href="notification.php?paymentID=<?php echo $i['paymentID'] ?>">
+                                                            <small><i><?php echo $i['paymentTime']?></i></small><br>
+                                                            <?php echo $i['custName']?> </a>
+                                                       
+                                                        <div class="dropdown-divider"></div>
+                                                        <?php
+                                                                  }
+                                                        }else{
+                                                        echo "No Records yet.";
+                                                         }
+                                                         ?>
+                                                   </div></li></ul> </ul></div></div> 
                         <div class="dropdownnew">
                             <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
@@ -125,7 +161,7 @@
                                 </div>
                      </div> 
                     </ul>
-                </div>  
+                 
             </div>
         </div>
     </div> 

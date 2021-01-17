@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2020 at 02:49 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Jan 17, 2021 at 08:31 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,17 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `adminID` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `adminName` varchar(255) NOT NULL,
-  `phoneNumber` int(12) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`adminID`, `username`, `password`, `adminName`, `phoneNumber`) VALUES
-(1, 'admin', '25f9e794323b453885f5181f1b624d0b', 'Nik Aiman', 123456789);
+INSERT INTO `admin` (`adminID`, `username`, `password`) VALUES
+(3, 'boss', 'bossley123'),
+(4, 'admin', 'admin123');
 
 -- --------------------------------------------------------
 
@@ -64,8 +62,9 @@ INSERT INTO `category` (`id`, `categoryName`) VALUES
 (3, 'Elektronik'),
 (5, 'Peralatan Sekolah'),
 (6, 'Peralatan Memasak'),
-(7, 'Haiwan Peliharaan'),
-(9, 'Buku');
+(9, 'Buku'),
+(10, 'Kasut dan Selipar'),
+(15, 'Kasut Sekolah');
 
 -- --------------------------------------------------------
 
@@ -86,11 +85,30 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`contactID`, `name`, `email`, `phoneNumber`, `inquiries`) VALUES
-(1, 'johan', 'n@s.com', '0123456789', 'bodoh punya website'),
-(3, 'johan', 'n@s.com', '0123456789', 'bodoh punya website'),
-(7, 'johan', 'nik@k.com', '0103445128', 'bodoh punya website'),
-(9, 'johan', 'nik@k.com', '0103445128', 'bodoh punya website'),
-(11, 'nik', 'nik@nik.nik', '0123456789', 'hahahha\r\n');
+(7, 'Maria', 'maria@utm.my', '0103445128', 'ok');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `deliverID` int(8) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `deliverAddress` varchar(255) NOT NULL,
+  `deliverName` text NOT NULL,
+  `deliverEmail` varchar(150) NOT NULL,
+  `phoneNumber` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `delivery`
+--
+
+INSERT INTO `delivery` (`deliverID`, `username`, `password`, `deliverAddress`, `deliverName`, `deliverEmail`, `phoneNumber`) VALUES
+(1, 'deliver', '8fa3f3b42193cc6ffe393a51e60ed744', 'KTDI', 'deliver', 'deliver@gmail.com', '012345678');
 
 -- --------------------------------------------------------
 
@@ -118,8 +136,7 @@ CREATE TABLE `ordering` (
 --
 
 INSERT INTO `ordering` (`orderID`, `productID`, `custID`, `username`, `productName`, `orderPrice`, `orderQuantity`, `orderDate`, `custName`, `custAddress`, `shippingMethod`, `orderStatus`) VALUES
-(1, 1, 1, 'user', 'Awesome cool T-shirt', '10.20', 12, '0000-00-00 00:00:00', 'Nik Aiman', '23, Jalan Warisan Indah 8/12 Kota Warisan 43900 Sepang Selangor', 'Pos Laju', 'Diterima'),
-(3, 22, 6, 'aligator', 'iPhone 19 Max Pro S Plus', '3.50', 10, '2020-03-31 16:00:00', 'Ali Gator', 'Kota Warisan', 'PosPerlahan', 'Diterima');
+(1, 1, 1, 'user', 'Awesome cool T-shirt', '10.20', 12, '0000-00-00 00:00:00', 'user2', '23, Jalan Warisan Indah 8/12 Kota Warisan 43900 Sepang Selangor', 'Pos Laju', 'Diterima');
 
 -- --------------------------------------------------------
 
@@ -147,15 +164,7 @@ CREATE TABLE `paymenting` (
 --
 
 INSERT INTO `paymenting` (`paymentID`, `username`, `custName`, `custAddress`, `productName`, `productID`, `productQuantity`, `price`, `proofPayment`, `paymentTime`, `orderStatus`, `orderTracking`) VALUES
-(8, 'user', 'using', 'england - original', 'Nasi Lemak Telur', '3', 4, '2.00', 'payment/receipt.png', '2020-06-08 10:39:14', 'Diterima', '[POSLAJU] 10000002'),
-(9, 'user', 'nokia', 'symbian', 'Nasi Lemak Telur', '3', 1, '0.50', 'payment/receipt.png', '0000-00-00 00:00:00', 'Sudah Dihantar', '[POSLAJU] 10000000'),
-(10, 'user', 'aiman', '10 selangor', 'Sambal Nasi Lemak', '4', 5, '1.00', 'payment/receipt.png', '2020-06-08 14:54:33', 'Sudah Dihantar', 'Hilang'),
-(11, 'jdb_official', 'John', 'UK', 'IC MALAYSIA - Original', '8', 5, '1000000.00', 'payment/receipt.png', '2020-06-09 00:54:20', 'Sudah Dibayar', 'Dalam Proses'),
-(12, 'user', 'nik', 'aaa', 'Hp Laptop i7', '3', 1, '2599.00', 'payment/receipt.png', '2020-06-09 01:38:10', 'Sudah Dibayar', '00000'),
-(13, 'user', 'nik', 'malaysia', 'Kucen	Zirafah	 ', '17', 1, '9999999.99', 'payment/DSC_0308.JPG', '2020-06-10 13:01:19', 'Diterima', 'Mennunggu Pengesahan'),
-(14, 'user', 'nik', 'sepang', 'Kucen	Zirafah	 ', '17	16	 ', 1, '9999999.99', 'payment/DSC_0068.JPG', '2020-06-10 13:02:11', 'Diterima', 'Mennunggu Pengesahan'),
-(15, 'user', 'test', 'test', 'Kucen	Zirafah	 ', '17	16	 ', 8, '9999999.99', 'payment/DSC_0058.JPG', '2020-06-10 13:09:34', 'Diterima', 'Mennunggu Pengesahan'),
-(16, 'user', 'nik', 'ai', '                                                                        Hp Laptop i7                                      \r\n                                ', '                                                                        3                                      \r\n                                ', 4, '10396.00', 'payment/receipt.png', '2020-06-11 08:53:02', 'Diterima', 'Mennunggu Pengesahan');
+(12, 'user', 'user', 'utm', 'Hp Laptop i7', '3', 1, '2599.00', 'payment/receipt.png', '2020-06-09 01:38:10', 'Sudah Dibayar', '00000');
 
 -- --------------------------------------------------------
 
@@ -179,12 +188,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `code`, `productName`, `productPrice`, `productDetail`, `productCategories`, `productQuantity`, `productImage`) VALUES
-(2, 'nlib', 'HP Laptop i5', '1999.00', 'Tak Sedap', 'Makanan dan Minuman', 10, 'product-images/laptop.jpg'),
-(3, 'nlt', 'Hp Laptop i7', '2599.00', 'tak Sedap', 'Makanan dan Minuman', 200, 'product-images/laptop.jpg'),
-(8, 'ic', 'IC MALAYSIA - Original', '200000.00', 'Original', 'Elektronik dan Gadjet', 99, 'product-images/Annotation 2019-07-17 215543.png'),
-(9, 'car001', 'Perodua Kelisa', '11999.00', 'Like New', '', 1, 'product-images/DSC_0065.JPG'),
-(16, 'grf', 'Zirafah', '9999999.99', 'Tinggi', 'Haiwan Peliharaan', 21, 'product-images/DSC_0052.JPG'),
-(17, 'kcg', 'Kucen', '6999.00', 'Comel', 'Haiwan Peliharaan', 1, 'product-images/DSC_0401.JPG');
+(2, 'nlib', 'HP Laptop i5', '1999.00', 'cantik', 'Elektronik', 10, 'product-images/laptop.jpg'),
+(3, 'nlt', 'Converse highcut (preloved)', '599.00', 'size 8 UK', 'Pakaian dan Aksesori', 200, 'photo/images.jpg');
 
 -- --------------------------------------------------------
 
@@ -198,15 +203,20 @@ CREATE TABLE `seller` (
   `password` varchar(255) NOT NULL,
   `sellerName` varchar(255) NOT NULL,
   `shopID` int(11) NOT NULL,
-  `shopName` varchar(255) NOT NULL
+  `shopName` varchar(255) NOT NULL,
+  `sellerAddress` varchar(200) NOT NULL,
+  `sellerEmail` varchar(50) NOT NULL,
+  `phoneNumber` int(11) NOT NULL,
+  `sellerpic` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `seller`
 --
 
-INSERT INTO `seller` (`sellerID`, `username`, `password`, `sellerName`, `shopID`, `shopName`) VALUES
-(1, 'seller', '25f9e794323b453885f5181f1b624d0b', 'Seller', 1, 'ABC Shop');
+INSERT INTO `seller` (`sellerID`, `username`, `password`, `sellerName`, `shopID`, `shopName`, `sellerAddress`, `sellerEmail`, `phoneNumber`, `sellerpic`) VALUES
+(2, 'seller', '1e4970ada8c054474cda889490de3421', 'seller', 2, 'ABC Shop', 'K9 K10', 'seller@gmail.com', 123456788, 'photo/allia.jpg'),
+(3, 'ctdk', 'ctdk123', 'ctdk', 3, 'SimplySiti', 'Putratakjaya', 'ctdk@yahoo.com', 128986785, 'photo/receipt.jpeg');
 
 -- --------------------------------------------------------
 
@@ -245,9 +255,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `custName`, `phoneNumber`, `custAddress`, `email`) VALUES
-(1, 'user', '25f9e794323b453885f5181f1b624d0b', 'Nik Aiman', '104546226', '23, Jalan Warisan Indah 8/12 Kota Warisan 43900 Sepang Selangor', 'nikaiman10@gmail.com'),
-(7, 'steven', '25f9e794323b453885f5181f1b624d0b', 'steven', '0123456789', 'Sabah dan sarawak', 'steven@steven.com'),
-(9, 'jdb_official', '25f9e794323b453885f5181f1b624d0b', 'John D\'Blend', '0123456789', 'Indon', 'john@gmail.com');
+(15, 'user', '6ad14ba9986e3615423dfca256d04e3f', 'user', '0192020292', 'Taman Uda Utama', 'user2@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -270,6 +278,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`contactID`);
+
+--
+-- Indexes for table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`deliverID`);
 
 --
 -- Indexes for table `ordering`
@@ -316,19 +330,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `delivery`
+--
+ALTER TABLE `delivery`
+  MODIFY `deliverID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ordering`
@@ -352,7 +372,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `sellerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sellerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shipping`
@@ -364,7 +384,7 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

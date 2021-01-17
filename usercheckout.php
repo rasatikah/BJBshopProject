@@ -327,6 +327,13 @@ if(isset($_SESSION["shopping_cart"])){
                             </tr>
                         </table>
                         <br>
+                        if(isset($_POST['submit'])){
+                            $submit = $_POST[submit];
+                            $query="INSERT INTO `paymenting` (INSERT INTO `paymenting` (`paymentID`, `username`, `custName`, `custAddress`, `productName`, `productID`, `productQuantity`, `price`, `proofPayment`, `paymentTime`, `orderStatus`, `orderTracking`) VALUES (NULL, '', '', '', '', '', '', '', '', current_timestamp(), '', '')";
+                            if(performQuery($query)){
+                                header("location.deliverdelivery.php");
+                            }
+                        }
                         <input type=submit value="Hantar" name="submit" onclick="validate();"><br><hr>
                         <strong><a href="usercart.php">Tukar fikiran? Kembali ke Troli</a></strong>
                         

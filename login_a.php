@@ -79,6 +79,9 @@ if (isset($_POST['login_admin'])) {
         .login-op-button:hover {
             background-color:#000
         }
+
+       
+   
 	</style>
     
 
@@ -135,20 +138,22 @@ if (isset($_POST['login_admin'])) {
         <h1>Admin</h1>
         <br><br><br>
 
-        <form method="post" action="login_a.php">
+        <form method="post" action="login_a_check.php">
             <?php include('errors.php'); ?>
             <div >
                 <label>Kata nama</label>
-                <input type="text" name="username" >
+                <input type="text" name="username" value="" >
             </div>
             <br>
             <div >
                 <label>Kata laluan</label>
-                <input type="password" name="password" >
+                <input type="password" name="password" id="pass"  required>
+                <br><br>
+                
             </div>
             <br>
             <div>
-                <button type="submit" class="btn" name="login_admin">Login</button>
+                <button type="submit" class="btn" name="submit">Login</button>
             </div>
         </form>
         <br>
@@ -171,6 +176,7 @@ if (isset($_POST['login_admin'])) {
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     
+    
     <!-- Bootstrap JS form CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
@@ -183,5 +189,7 @@ if (isset($_POST['login_admin'])) {
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+
+    <script src="js/skrip.js"></script>
   </body>
 </html>

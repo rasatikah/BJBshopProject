@@ -9,7 +9,7 @@ $db = mysqli_connect("localhost","root","", "projectwd");
 // initializing variables
 $errors = array(); 
 
-if (isset($_POST['login_delivery'])) {
+if (isset($_POST['login_deliver'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
   
@@ -22,7 +22,7 @@ if (isset($_POST['login_delivery'])) {
   
     if (count($errors) == 0) {
         $password = md5($password);
-        $query = "SELECT * FROM deliver WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM delivery WHERE username='$username' AND password='$password'";
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['username'] = $username;
@@ -148,7 +148,7 @@ if (isset($_POST['login_delivery'])) {
             </div>
             <br>
             <div>
-                <button type="submit" class="btn" name="login_delivery">Login</button>
+                <button type="submit" class="btn" name="login_deliver">Login</button>
             </div>
         </form>
         <br>
