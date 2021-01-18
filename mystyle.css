@@ -478,11 +478,11 @@ body {
 
   .image-circle{
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    border: 4px solid #FFF;
-   
+    width: 45px;
+    height: 45px;
+    border: 0px solid #555;
 }
+
 
 
 table#tebel th {

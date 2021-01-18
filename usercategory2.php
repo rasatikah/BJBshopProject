@@ -74,6 +74,15 @@ if(empty($_SESSION["shopping_cart"])) {
     <link rel="shortcut icon" href="#" />
 	<style>
     .product_wrapper img{width:152px; height:98px;}
+    <style>
+        .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border: 0px solid #555;
+    object-fit: cover;
+}
+</style>
     </style>
 </head>
 

@@ -39,7 +39,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
     
 
@@ -50,28 +50,28 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
+    <style>
+
+.avatar {
+            vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 0px solid #555;
+}
+        
+
+    </style>
   </head>
   <body>
    
-  <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="user-menu">
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="header-right">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End header area -->
     
     <div class="site-branding-area">
         <div class="container">
@@ -126,21 +126,30 @@
                         <ul class="nav navbar-nav">
                             <li ><a id="homePage" href="userindex.php">Laman Utama</a></li>
                             <li ><a href="usershop.php">Halaman Kedai</a></li>
-                            <li ><a href="usercart.php">Troli</a></li>
-                            <li ><a href="usercheckout.php">Pembayaran</a></li>
                             <li ><a href="usercontact.php">Hubungi Kami</a></li>
                             <!--<div class="login-bar">
                                 <li><a href="index.php"><i class="fa fa-user"></i> Log Keluar</a></li>
                                 </div>
                             -->
-
-                            <div class="dropdownnew">
-                            <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
+                            <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from user";
+                      $result = mysqli_query($con, $query);
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                    
+                            $userImage = $row['userImage'];
+                    ?>
+                    ?>
+                        <div class="dropdownnew">
+                            <button class="dropbtn"><a href="#" class="profileIcon"></a> <img class="image-circle" src="<?php echo $userImage ?>" alt=""/>&emsp; <?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
-                                <a id="myPurchase" href="userpurchase.php">Pembelian Saya</a>
+                                <a id="myAcct" href="useraccount.php">Akaun saya</a>
+                                <a id="myReport" href="userpurchase.php">Laporan</a>
                                 <a id="logout" href="logout.php">Log Keluar</a>
                                 </div>
-                     </div> 
+                    <?php } ?>
+                           
                         </ul>
                     </div>  
             </div>
@@ -171,48 +180,41 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="brand-wrapper">
-                        <center>
-                        <table  class="shop_table cart">
-                            <tr>
-                            <th width=15% >id pengguna</th>
-                            <th width=15% >kata nama pengguna</th>
-                            <th width=30% >nama pengguna</th>
-                            <th width=10% >nombor telefon</th>
-                            <th width=10% >email</th>
-                            <th width=30% >alamat rumah</th>
-                            <th width=15% >tindakan</th>
-                            </tr>
+                    <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from user";
+                      $result = mysqli_query($con, $query);
+                    
 
-                            <?php
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                            $userID = $row['userID'];
+                            $username = $row['username'];
+                            $password = $row['password'];
+                            $custName = $row['custName'];
+                            $phoneNumber = $row['phoneNumber']; 
+                            $email = $row['email'];
+                            $custAddress = $row['custAddress'];
+                            $userImage = $row['userImage'];
+                    ?>
+                        <center><td><img class="avatar" src="<?php echo $userImage ?>" alt="centered image" /></td></center>
+                        <h1 style="color:black; text-align:center;"><?php echo $custName ?></h1><br/>
 
-                                $con = mysqli_connect("localhost", "root", "", "projectwd");
-                                $query = "SELECT * from user WHERE username = '".$_SESSION['username'] ."'";
-                                $result = mysqli_query($con, $query);
-
-                                while($row=mysqli_fetch_assoc($result))
-                                {
-                                    $userID = $row['userID'];
-                                    $username = $row['username'];
-                                    $custName = $row['custName'];
-                                    $custAddress = $row['custAddress'];
-                                    $phoneNumber = $row['phoneNumber'];
-                                    $email = $row['email'];
-
-                            ?>
-                                <tr>
-                                    <td><?php echo $userID ?></td>
-                                    <td><?php echo $username ?></td>
-                                    <td><?php echo $custName ?></td>
-                                    <td><?php echo '0'.$phoneNumber ?></td>
-                                    <td><?php echo $email ?></td>
-                                    <td><?php echo $custAddress ?></td>
-                                    <td><a href="useraccountedit.php?userID=<?php echo $userID ?>">Klik Sini</a></td>
-                                </tr>
-                            <?php
-                                }
-                            ?>
-
-                            </table>
+                        <table  class="shop_table cart">  
+                        <tr>
+                        <th colspan="3" align="center" id="th1">Maklumat Peribadi</th>
+                        </tr>                                
+                            <tr><td><b>Kata Nama</td><td><?php echo $username ?></td><td rowspan="6" align="center"><a href="useraccountupdate.php?GetID=<?php echo $userID ?>">Edit</a></td></tr>
+                            <tr><td><b>Kata Laluan</td><td><?php echo $password ?></td></tr>
+                            <tr><td><b>Nama</td><td><?php echo $custName ?></td></tr>
+                            <tr><td><b>Nombor telifon</td><td><?php echo $phoneNumber ?></td></tr>
+                            <tr><td><b>Email</td><td><?php echo $email ?></td></tr>
+                            <tr><td><b>Alamat</td><td><?php echo $custAddress ?></td></tr>
+                        </table>
+                        <br>
+                        <?php
+                            }
+                        ?>
 
                         </center>
                     </div>

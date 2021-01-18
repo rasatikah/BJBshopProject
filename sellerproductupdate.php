@@ -70,6 +70,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
+    <style>
+
+.avatar {
+            vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 0px solid #555;
+}
+        
+
+    </style>
   </head>
   <body>
    

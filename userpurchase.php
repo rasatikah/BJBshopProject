@@ -52,7 +52,16 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
-  </head>
+    <style>
+        .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border: 0px solid #555;
+    object-fit: cover;
+}
+</style>  
+</head>
   <body>
    
   <div class="header-area">
@@ -130,13 +139,24 @@
                             <li ><a href="usershop.php">Halaman Kedai</a></li>
                             <li ><a href="usercontact.php">Hubungi Kami</a></li>
                             
-                            <div class="dropdownnew">
-                            <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
+                            <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from user";
+                      $result = mysqli_query($con, $query);
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                    
+                            $userImage = $row['userImage'];
+                    ?>
+                    ?>
+                        <div class="dropdownnew">
+                            <button class="dropbtn"><a href="#" class="profileIcon"></a> <img class="image-circle" src="<?php echo $userImage ?>" alt=""/>&emsp; <?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
                                 <a id="myAcct" href="useraccount.php">Akaun saya</a>
+                                <a id="myReport" href="userpurchase.php">Laporan</a>
                                 <a id="logout" href="logout.php">Log Keluar</a>
                                 </div>
-                     </div> 
+                    <?php } ?>
                         </ul>
                     </div>  
             </div>

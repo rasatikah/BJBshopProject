@@ -54,6 +54,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
+    <style>
+
+.avatar {
+            vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 0px solid #555;
+}
+        
+
+    </style>
   </head>
   <body>
    
@@ -105,7 +124,6 @@
                         <li ><a id="homePage" href="sellerhomepage.php">Laman Utama</a></li>
                         <li class="active"><a href="sellershop.php">Halaman Kedai</a></li>
                         <li><a href="sellerproduct.php">Urus produk</a></li>
-                        <li ><a href="sellerorder.php">Urus Pembayaran</a></li>
                         <li ><a href="sellerorder2.php">Urus Pesanan</a></li>
                         <div class="dropdownnew">
                             <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>

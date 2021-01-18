@@ -7,7 +7,7 @@
      //If not logged in as user
      if (!isset($_SESSION['username'])) {
          $_SESSION['msg'] = "You must log in first";
-         header('location: login_s.php');
+         header('location: login.php');
      }
  
      //Logout
@@ -19,20 +19,21 @@
 
 
     $con = mysqli_connect("localhost", "root", "", "projectwd");
-    $productid = $_GET['productid'];
-    $query = "SELECT * from product where productID = '".$productid."'";
+    $deliverID = $_GET['GetID'];
+    $query = "SELECT * from delivery where deliverID = '".$deliverID."'";
     $result = mysqli_query($con, $query);
     
 
     while($row=mysqli_fetch_assoc($result))
     {
-        $productid = $row['productID'];
-        $productimage = $row['productImage'];
-        $productname = $row['productName'];
-        $productprice = $row['productPrice'];
-        $productquantity = $row['productQuantity'];
-        $productdetail = $row['productDetail'];
-        $productCategories = $row['productCategories'];
+        $deliverID = $row['deliverID'];
+        $username = $row['username'];
+        $password = $row['password'];
+        $deliverName = $row['deliverName'];
+        $phoneNumber = $row['phoneNumber']; 
+        $deliverEmail = $row['deliverEmail'];
+        $deliverAddress = $row['deliverAddress'];
+        $deliverImage = $row['deliverImage'];
     }
 ?>
 
@@ -44,7 +45,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Let'sShop - HTML eCommerce Template</title>
+    <title>BJBshop</title>
     
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -60,6 +61,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mystyle.css">
     <link rel="stylesheet" href="css/responsive.css">
     
 
@@ -70,10 +72,11 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
+
     <style>
 
 .avatar {
-            vertical-align: middle;
+  vertical-align: middle;
             width: 200px;
             height: 200px;
             object-fit: cover;
@@ -83,21 +86,39 @@
     border-radius: 50%;
     width: 45px;
     height: 45px;
-    object-fit: cover;
     border: 0px solid #555;
+    object-fit: cover;
 }
-        
 
+</style>
     </style>
   </head>
   <body>
    
-  <div class="site-branding-area">
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="header-right">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End header area -->
+    
+    <div class="site-branding-area">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.php"><span>BJBshop | Laman Peniaga</span></a></h1>
+                    <h1><a href="index.php"><span>BJBshop | Laman Peniaga</span></a></h1>
                     </div>
                 </div>
                 
@@ -105,33 +126,40 @@
             </div>
         </div>
     </div> <!-- End site branding area -->
-
-    
-
     <div class="container">
-
-    <?php
-        $productid = $_GET['productid'];
-
-        echo "<h2>Sedang mengemaskini gambar bagi ID Produk ". $productid ."</h2>";
-
-    ?>
 <center>
 <br>
-    <form action="sellerproductpicutre2.php?productid=<?php echo $productid ?>" enctype="multipart/form-data" method="POST">
+    <form action="deliveraccountupdate2.php?ID=<?php echo $deliverID ?>" enctype="multipart/form-data" method="POST">
 <table class="shop_table">
 <tr>
     <tr>
-        <img src="<?php echo $productimage ?>" alt="" width="20%"/>        
+       <img class="avatar" src="<?php echo $deliverImage ?>" alt="" width="20%"/> &emsp;
+        <button  class="edit"><a href="deliverpicture.php?deliverID=<?php echo $deliverID ?>" onclick ="return confirm('Perbuatan ini akan membuang gambar yang sedia ada. Adakah anda pasti ingin teruskan?');"> Kemaskini Gambar</a></button>
+    </tr> 
+    <br><br>
+    <tr>
+    <td>Nama</td>
+    <td><input type="text" name="deliverName"  value="<?php echo $deliverName  ?>" ></td>
     </tr>
     <tr>
-        <td>Gambar Produk :</td>
-        <td><input type="file" name="fileImg" required></td>
+    <td>nombor telifon</td>
+    <td><input type="text" patter="[0-9]*" name="phoneNumber"  value="<?php echo $phoneNumber  ?>" ></td>
     </tr>
     <tr>
-    <td></td>
-    <td><input type="submit" name="update" value="kemaskini" onclick="return confirm('teruskan kemaskini?');">
-    <button type="submit" onclick="location.href = 'sellerproduct.php';">Kembali</button><br><br><br>
+    <td>Email</td>
+    <td><input type="text" name="email"  value="<?php echo $deliverEmail  ?>" ></td>
+    </tr>
+    <tr>
+    <td>Alamat</td>
+    <td><input type="text" name="deliverAddress"  value="<?php echo $deliverAddress   ?>" ></td>
+    </tr>
+
+    <tr>
+        <td>
+
+            <td><input type="submit" name="update" value="kemaskini" onclick="return confirm('teruskan kemaskini?');">
+            <input type="submit" name="back" value="kembali" >
+        
     </tr>
 </tr>    
 </table>

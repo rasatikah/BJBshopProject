@@ -147,7 +147,7 @@ z-index: 999;}
     background: none repeat scroll 0 0 #000;
 }
 .profileIcon {
-    color: #ffffff;
+  
     float: right;
     width: 150px;    
     padding-top: 5px;
@@ -814,7 +814,7 @@ table.shop_table {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     margin-bottom: 50px;
-    width: 100%;
+    width: 85%;
 }
 table.shop_table th, table.shop_table td {
     border-left: 1px solid #ddd;
@@ -1043,11 +1043,11 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 
 .image-circle{
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    border: 4px solid #FFF;
-   
+    width: 45px;
+    height: 45px;
+    border: 0px solid #555;
 }
+
 
 
 
@@ -1244,3 +1244,10 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
             height: 100px;
             background-size: auto;
         }
+
+        .avatar {
+            vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            border-radius: 30%;
+          }

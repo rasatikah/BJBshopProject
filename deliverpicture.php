@@ -7,7 +7,7 @@
      //If not logged in as user
      if (!isset($_SESSION['username'])) {
          $_SESSION['msg'] = "You must log in first";
-         header('location: login_s.php');
+         header('location: login_d.php');
      }
  
      //Logout
@@ -19,20 +19,21 @@
 
 
     $con = mysqli_connect("localhost", "root", "", "projectwd");
-    $productid = $_GET['productid'];
-    $query = "SELECT * from product where productID = '".$productid."'";
+    $deliverID = $_GET['deliverID'];
+    $query = "SELECT * from delivery where deliverID = '".$deliverID."'";
     $result = mysqli_query($con, $query);
     
 
     while($row=mysqli_fetch_assoc($result))
     {
-        $productid = $row['productID'];
-        $productimage = $row['productImage'];
-        $productname = $row['productName'];
-        $productprice = $row['productPrice'];
-        $productquantity = $row['productQuantity'];
-        $productdetail = $row['productDetail'];
-        $productCategories = $row['productCategories'];
+        $deliverID = $row['deliverID'];
+        $username = $row['username'];
+        $password = $row['password'];
+        $deliverName = $row['deliverName'];
+        $phoneNumber = $row['phoneNumber']; 
+        $deliverEmail = $row['deliverEmail'];
+        $deliverAddress = $row['deliverAddress'];
+        $deliverImage = $row['deliverImage'];
     }
 ?>
 
@@ -44,7 +45,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Let'sShop - HTML eCommerce Template</title>
+    <title>BJBshop</title>
     
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -71,9 +72,8 @@
     <![endif]-->
     <link rel="shortcut icon" href="#" />
     <style>
-
-.avatar {
-            vertical-align: middle;
+  .avatar {
+  vertical-align: middle;
             width: 200px;
             height: 200px;
             object-fit: cover;
@@ -86,18 +86,35 @@
     object-fit: cover;
     border: 0px solid #555;
 }
-        
-
-    </style>
+}
+</style>
   </head>
   <body>
    
-  <div class="site-branding-area">
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="header-right">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End header area -->
+    
+    <div class="site-branding-area">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.php"><span>BJBshop | Laman Peniaga</span></a></h1>
+                    <h1><a href="index.php"><span>BJBshop | Laman Peniaga</span></a></h1>
                     </div>
                 </div>
                 
@@ -111,18 +128,18 @@
     <div class="container">
 
     <?php
-        $productid = $_GET['productid'];
+        $deliverID = $_GET['deliverID'];
 
-        echo "<h2>Sedang mengemaskini gambar bagi ID Produk ". $productid ."</h2>";
+        echo "<h2>Sedang mengemaskini gambar bagi ID peniaga ". $deliverID ."</h2>";
 
     ?>
 <center>
 <br>
-    <form action="sellerproductpicutre2.php?productid=<?php echo $productid ?>" enctype="multipart/form-data" method="POST">
+    <form action="deliverpicture2.php?deliverID=<?php echo $deliverID ?>" enctype="multipart/form-data" method="POST">
 <table class="shop_table">
 <tr>
     <tr>
-        <img src="<?php echo $productimage ?>" alt="" width="20%"/>        
+        <img class="avatar" src="<?php echo $deliverImage ?>" alt="" width="20%"/>        
     </tr>
     <tr>
         <td>Gambar Produk :</td>
@@ -131,7 +148,7 @@
     <tr>
     <td></td>
     <td><input type="submit" name="update" value="kemaskini" onclick="return confirm('teruskan kemaskini?');">
-    <button type="submit" onclick="location.href = 'sellerproduct.php';">Kembali</button><br><br><br>
+    <button type="submit" onclick="location.href = 'deliver.php';">Kembali</button><br><br><br>
     </tr>
 </tr>    
 </table>

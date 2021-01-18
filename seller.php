@@ -49,6 +49,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
+    <style>
+
+.avatar {
+            vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 0px solid #555;
+}
+        
+
+    </style>
   </head>
   <body>
    
@@ -101,13 +120,25 @@
                         <li><a href="sellershop.php">Halaman Kedai</a></li>
                         <li><a href="sellerproduct.php">Urus produk</a></li>
                         <li><a href="sellerorder.php">Urus Pesanan</a></li>
-                        
+                      
+                      <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from seller";
+                      $result = mysqli_query($con, $query);
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                    
+                            $sellerImage = $row['sellerImage'];
+                    ?>
+                    ?>
                         <div class="dropdownnew">
-                            <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
+                            <button class="dropbtn"><a href="#" class="profileIcon"></a> <img class="image-circle" src="<?php echo $sellerImage ?>" alt=""/>&emsp; <?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
+                                <a id="myAcct" href="seller.php">Akaun saya</a>
                                 <a id="myReport" href="sellerreport.php">Laporan</a>
                                 <a id="logout" href="logout.php">Log Keluar</a>
                                 </div>
+                    <?php } ?>
                      </div> 
                     </ul>
                 </div>  
@@ -133,83 +164,57 @@
                 <li>Profil</li>
             </ul>
     
-    <div class="product-widget-area">
+    
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="brand-wrapper">
-                        
-                        <div class="product-widget-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="brand-wrapper">
-                    <center>
-                            <h1><?php echo $_SESSION['username']; ?></h1>
-                            
-                            <h4>
-                                
 
-                                <br><br>
-                                
-                                <?php
-                                // connect to the database
-                                include('config.php');
+                   
+                    <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from seller";
+                      $result = mysqli_query($con, $query);
+                    
 
-                                // get the records from the database
-                                if ($result = $link->query("SELECT * FROM seller WHERE username = '".$_SESSION['username'] ."'"))
-                                {
-                                // display records if there are records to display
-                                if ($result->num_rows > 0)
-                                {
-                                // display records in a table
-                                echo "<table border='1' width='105%' id='tebel' cellpadding='10'>";
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                            $sellerID = $row['sellerID'];
+                            $username = $row['username'];
+                            $password = $row['password'];
+                            $sellerName = $row['sellerName'];
+                            $phoneNumber = $row['phoneNumber']; 
+                            $sellerEmail = $row['sellerEmail'];
+                            $sellerAddress = $row['sellerAddress'];
+                            $sellerImage = $row['sellerImage'];
+                            $shopName = $row['shopName'];
+                    ?>
+                        <center><td><img class="avatar" src="<?php echo $sellerImage ?>" alt="centered image" /></td></center>
+                        <h1 style="color:black; text-align:center;"><?php echo $sellerName ?></h1><br/>
 
-                                // set table headers
-                                echo "<tr><th width='100px'>ID Peniaga</th><th width='100px'>ID Kedai</th><th width='170px'>Nama Peniaga</th><th width='170px'>Nama Kedai</th></tr>";
-
-                                while ($row = $result->fetch_object())
-                                {
-                                // set up a row for each record
-                                echo "<tr>";
-                                echo strtoupper ("<td>" . $row->sellerID . "</td>");
-                                echo strtoupper ("<td>" . $row->shopID . "</td>");
-                                echo strtoupper ("<td>" . $row->sellerName . "</td>");
-                                echo strtoupper ("<td>" . $row->shopName . "</td>");
-                                echo "</tr>";
-                                }
-
-                                echo "</table>";
-                                }
-                                // if there are no records in the database, display an alert message
-                                else
-                                {
-                                echo "No results to display!";
-                                }
-                                }
-                                // show an error if there is an issue with the database query
-                                else
-                                {
-                                echo "Error: " . $mysqli->error;
-                                }
-
-                                // close database connection
-                                $link->close();
-
-                                ?>
-
-                        </center>
+                        <table  class="shop_table cart">  
+                        <tr>
+                        <th colspan="3" align="center" id="th1">Maklumat Peribadi</th>
+                        </tr>                                
+                            <tr><td><b>Kata Nama</td><td><?php echo $username ?></td><td rowspan="7" align="center"><a href="selleraccountupdate.php?GetID=<?php echo $sellerID ?>">Edit</a></td></tr>
+                            <tr><td><b>Kata Laluan</td><td><?php echo $password ?></td></tr>
+                            <tr><td><b>Nama peniaga</td><td><?php echo $sellerName ?></td></tr>
+                            <tr><td><b>Nama kedai</td><td><?php echo $shopName ?></td></tr>
+                            <tr><td><b>Nombor telifon</td><td><?php echo $phoneNumber ?></td></tr>
+                            <tr><td><b>Email</td><td><?php echo $sellerEmail ?></td></tr>
+                            <tr><td><b>Alamat</td><td><?php echo $sellerAddress ?></td></tr>
+                        </table>
+                        <br>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End brands area -->
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End brands area -->
+     
     
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>

@@ -71,6 +71,23 @@ include("function.php");
         .login-op-button:hover {
             background-color:#000
         }
+
+.avatar {
+  vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border: 0px solid #555;
+    object-fit: cover;
+
+}
+
         </style>
 
   </head>
@@ -124,42 +141,51 @@ include("function.php");
                         <li ><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
                         <li class="active"><a href="deliverdelivery.php">Penghantaran</a></li>
                         
-                        <li class="nav-item dropdown"><a class="btn btn-primary dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" 
-                                                        aria-expanded="false">Notifications
-                                                        <?php
-                                                               $query = "SELECT * from `paymenting` order by `paymentTime` DESC";
-                                                               if(count(fetchAll($query))>0){
-                                                         ?>
-                                                              <span class="badge badge-light"><?php echo count(fetchAll($query)); ?></span>
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-primary dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notifications
+                            <?php
+                                $query = "SELECT * from `paymenting` order by `paymentTime` DESC";
+                                    if(count(fetchAll($query))>0){
+                            ?>
+                             <span class="badge badge-light"><?php echo count(fetchAll($query)); ?></span>
                                                               
-                                                                         <?php
-                                                          }
-                                                                       ?></a>
+                            <?php }?> </a>
                                                         
-                                                        <div class="dropdown-menu dropdown-large" aria-labelledby="dropdown01">
-                                                            <?php
-                                                              if(count(fetchAll($query))>0){
-                                                                  foreach(fetchAll($query) as $i){
-                                                            ?>
-                                                        <a class="dropdown-item " href="notification.php?paymentID=<?php echo $i['paymentID'] ?>">
-                                                            <small><i><?php echo $i['paymentTime']?></i></small><br>
-                                                            <?php echo $i['custName']?> </a>
+                        <div class="dropdown-menu dropdown-large" aria-labelledby="dropdown01">
+                                <?php
+                                    if(count(fetchAll($query))>0){
+                                        foreach(fetchAll($query) as $i){
+                                ?>
+                            <a class="dropdown-item " href="notification.php?paymentID=<?php echo $i['paymentID'] ?>">
+                            <small><i><?php echo $i['paymentTime']?></i></small><br>
+                            <?php echo $i['custName']?> </a>
                                                        
-                                                        <div class="dropdown-divider"></div>
-                                                        <?php
-                                                                  }
-                                                        }else{
-                                                        echo "No Records yet.";
-                                                         }
-                                                         ?>
-                                                   </div></li></ul> </ul></div></div> 
+                            <div class="dropdown-divider"></div>
+                            <?php
+                              }
+                                 }else{
+                                    echo "No Records yet.";
+                                     }
+                            ?>
+                            </div></li></ul> </ul></div></div> 
+<!--------profile avatar------------------>                            
+                    <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from delivery";
+                      $result = mysqli_query($con, $query);
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                    
+                            $deliverImage = $row['deliverImage'];
+                    ?>
+                    ?>
                         <div class="dropdownnew">
-                            <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
+                            <button class="dropbtn"><a href="#" class="profileIcon"></a> <img class="image-circle" src="<?php echo $deliverImage ?>" alt=""/>&emsp; <?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
                                 <a id="myAcct" href="deliver.php">Akaun saya</a>
                                 <a id="logout" href="logout.php">Log Keluar</a>
                                 </div>
-                     </div> 
+                    <?php } ?>
                     </ul>
                  
             </div>

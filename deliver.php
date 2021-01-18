@@ -18,16 +18,6 @@
     }
 ?>
 
-<?php 
-
-include("function.php");
-
-
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +50,6 @@ include("function.php");
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
-    
     <style>
 
 .avatar {
@@ -80,7 +69,6 @@ include("function.php");
 }
 
 </style>
-
   </head>
   <body>
    
@@ -129,8 +117,8 @@ include("function.php");
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li ><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
-                        <li class="active"><a href="deliverdelivery.php">Penghantaran</a></li>
+                        <li><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
+                        <li><a href="deliverdelivery.php">Penghantaran</a></li>
                         <?php
                       $con = mysqli_connect("localhost", "root", "", "projectwd");
                       $query = "SELECT * from delivery";
@@ -154,60 +142,75 @@ include("function.php");
         </div>
     </div> 
     </div>
+    
+    
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Penghantaran Diterima</h2>
-
-                        <table>
-              <tr>
-                <th>paymentID</th>
-                <th>custName</th>
-                <th>custAddress</th>
-                <th>productName</th>
-                <th>productQuantity</th>
-                <th>price</th>
-                <th>proofPayment</th>
-                <th>paymentTime</th>
-                <th>orderStatus</th>
-                <th>orderTracking</th>
-              </tr>
-              <?php
-              $conn = mysqli_connect("localhost", "root", "", "projectwd");
-              if ($conn-> connect_error) {
-                  die("Connection failed:". $conn-> connect_error);
-              }
-
-              $sql = "SELECT paymentID, custName, custAddress, productName, productQuantity, price, proofPayment, paymentTime, orderStatus, orderTracking from paymenting where paymentID='$paymentID'";
-           
-              $result = $conn-> query($sql);
-
-              if($result -> num_rows > 0){
-                  while ($row = $result-> fetch_assoc()){
-                      echo "<tr><td>". $row["paymentID"] ."</td><td>". $row["custName"] ."</td><td>". $row["custAddress"] ."</td><td>". $row["productName"]
-                      ."</td><td>". $row["productQuantity"] ."</td><td>". $row["price"]. "</td><td>". $row["proofPayment"] ."</td><td>". $row["paymentTime"]
-                      ."</td><td>". $row["orderStatus"] ."</td><td>". $row["orderTracking"] ."</td></tr>";
-                  }
-                  echo "</table>";
-              }
-              else {
-                  echo "0 result";
-              }
-
-              $conn-> close();
-              ?>
-              </table>
+                        <h2>Profil Anda</h2>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+    </div>
 
-<!-------------------------------------------------------------------------------------->
- 
-<!-------------------------------------------------------------------------------------->
+    <ul class="breadcrumb">
+                <li><a href="deliverhomepage.php">Halaman Utama</a></li>
+                <li>Profil</li>
+            </ul>
+    
+    <div class="product-widget-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="brand-wrapper">
+                    <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from delivery";
+                      $result = mysqli_query($con, $query);
+                    
+
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                            $deliverID = $row['deliverID'];
+                            $username = $row['username'];
+                            $password = $row['password'];
+                            $deliverName = $row['deliverName'];
+                            $phoneNumber = $row['phoneNumber']; 
+                            $deliverEmail = $row['deliverEmail'];
+                            $deliverAddress = $row['deliverAddress'];
+                            $deliverImage = $row['deliverImage'];
+                    ?>
+                        <center><td><img class="avatar" src="<?php echo $deliverImage ?>" alt="centered image" /></td></center>
+                        <h1 style="color:black; text-align:center;"><?php echo $deliverName ?></h1><br/>
+
+                        <table  class="shop_table cart">  
+                        <tr>
+                        <th colspan="3" align="center" id="th1">Maklumat Peribadi</th>
+                        </tr>                                
+                            <tr><td><b>Kata Nama</td><td><?php echo $username ?></td><td rowspan="6" align="center"><a href="deliveraccountupdate.php?GetID=<?php echo $deliverID ?>">Edit</a></td></tr>
+                            <tr><td><b>Kata Laluan</td><td><?php echo $password ?></td></tr>
+                            <tr><td><b>Nama</td><td><?php echo $deliverName ?></td></tr>
+                            <tr><td><b>Nombor telifon</td><td><?php echo $phoneNumber ?></td></tr>
+                            <tr><td><b>Email</td><td><?php echo $deliverEmail ?></td></tr>
+                            <tr><td><b>Alamat</td><td><?php echo $deliverAddress ?></td></tr>
+                        </table>
+                        <br>
+                        <?php
+                            }
+                        ?>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End brands area -->
+    
+    
+    
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

@@ -50,6 +50,24 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="#" />
+    <style>
+
+.avatar {
+  vertical-align: middle;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .image-circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 0px solid #555;
+}
+
+</style>
   </head>
   <body>
    
@@ -100,13 +118,23 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a id="homePage" href="deliverhomepage.php">Laman Utama</a></li>
                         <li><a href="deliverdelivery.php">Penghantaran</a></li>
+                        <?php
+                      $con = mysqli_connect("localhost", "root", "", "projectwd");
+                      $query = "SELECT * from delivery";
+                      $result = mysqli_query($con, $query);
+                      while($row=mysqli_fetch_assoc($result))
+                        {
+                    
+                            $deliverImage = $row['deliverImage'];
+                    ?>
+                    ?>
                         <div class="dropdownnew">
-                            <button class="dropbtn"><a href="#" class="profileIcon"></a><img src="img/images.jpeg" class="image-circle"/>&nbsp&nbsp<?php echo $_SESSION['username']; ?></button>
+                            <button class="dropbtn"><a href="#" class="profileIcon"></a> <img class="image-circle" src="<?php echo $deliverImage ?>" alt=""/>&emsp; <?php echo $_SESSION['username']; ?></button>
                                 <div class="dropdownnew-content">
                                 <a id="myAcct" href="deliver.php">Akaun saya</a>
                                 <a id="logout" href="logout.php">Log Keluar</a>
                                 </div>
-                     </div> 
+                    <?php } ?>
                     </ul>
                 </div>  
             </div>

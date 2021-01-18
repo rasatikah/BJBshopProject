@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Jan 17, 2021 at 08:31 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
+=======
+-- Generation Time: Dec 29, 2020 at 04:57 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.28
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,9 +43,14 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
+<<<<<<< HEAD
 INSERT INTO `admin` (`adminID`, `username`, `password`) VALUES
 (3, 'boss', 'bossley123'),
 (4, 'admin', 'admin123');
+=======
+INSERT INTO `admin` (`adminID`, `username`, `password`, `adminName`, `phoneNumber`) VALUES
+(1, 'admin', '25f9e794323b453885f5181f1b624d0b', 'Admin', 123456789);
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 
 -- --------------------------------------------------------
 
@@ -206,17 +217,26 @@ CREATE TABLE `seller` (
   `shopName` varchar(255) NOT NULL,
   `sellerAddress` varchar(200) NOT NULL,
   `sellerEmail` varchar(50) NOT NULL,
+<<<<<<< HEAD
   `phoneNumber` int(11) NOT NULL,
   `sellerpic` varchar(100) NOT NULL
+=======
+  `phoneNumber` int(11) NOT NULL
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `seller`
 --
 
+<<<<<<< HEAD
 INSERT INTO `seller` (`sellerID`, `username`, `password`, `sellerName`, `shopID`, `shopName`, `sellerAddress`, `sellerEmail`, `phoneNumber`, `sellerpic`) VALUES
 (2, 'seller', '1e4970ada8c054474cda889490de3421', 'seller', 2, 'ABC Shop', 'K9 K10', 'seller@gmail.com', 123456788, 'photo/allia.jpg'),
 (3, 'ctdk', 'ctdk123', 'ctdk', 3, 'SimplySiti', 'Putratakjaya', 'ctdk@yahoo.com', 128986785, 'photo/receipt.jpeg');
+=======
+INSERT INTO `seller` (`sellerID`, `username`, `password`, `sellerName`, `shopID`, `shopName`, `sellerAddress`, `sellerEmail`, `phoneNumber`) VALUES
+(2, 'seller', '1e4970ada8c054474cda889490de3421', 'seller', 0, '', 'K9 K10', 'seller@gmail.com', 123456788);
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 
 -- --------------------------------------------------------
 
@@ -255,7 +275,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `custName`, `phoneNumber`, `custAddress`, `email`) VALUES
+<<<<<<< HEAD
 (15, 'user', '6ad14ba9986e3615423dfca256d04e3f', 'user', '0192020292', 'Taman Uda Utama', 'user2@gmail.com');
+=======
+(15, 'user', '6ad14ba9986e3615423dfca256d04e3f', 'user', '192020292', 'KMJ', 'user2@gmail.com');
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 
 --
 -- Indexes for dumped tables
@@ -372,7 +396,11 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
+<<<<<<< HEAD
   MODIFY `sellerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `sellerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 
 --
 -- AUTO_INCREMENT for table `shipping`
@@ -384,7 +412,11 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
+<<<<<<< HEAD
   MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+=======
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+>>>>>>> 87d211dc70596e2b7b20d1aeab4b8fee93fcc952
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
